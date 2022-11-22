@@ -99,8 +99,8 @@ function foo(a: number, b: number): number { return a }
 它会被 typecheck 成这个东西:
 
 ```plaintext
-foo : (_tupled: (a: number) * (b: number) * unit) -> number
-foo = lambda a: a
+foo : (_tupled: (a: number) * (b: number) * unit) → number
+foo = λ a → a
 ```
 
 也就是说这个函数只会接收 **1 个** 参数, 参数类型是一个 Sigma, 连接 `a` 和 `b` 后以 `unit`
