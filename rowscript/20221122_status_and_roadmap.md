@@ -33,6 +33,8 @@ PLT ideas 去让 JavaScript 更加 consistent, 更加 scalable.
 <p>没错, 你学会了捏.</p>
 </details>
 
+## 语言内核
+
 > ⚠️ 注意! 下面的内容我们将大量使用学术用语!
 
 从学术来讲, 认真的说, RowScript 是一门这样的语言:
