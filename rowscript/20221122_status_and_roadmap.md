@@ -63,7 +63,7 @@ F 变种, 这是考虑到用户的一些被 TS 搞得 **拧巴** 但是又 **顽
   可以看帆帆做的总结和讨论 [Summarized Document of Perseus Paper], 这样可以解决 codegen
   出的 JS 的性能问题
 * 支持 record-concatenation-based **row polymorphism**, 这点基于 [AEDT] 来做, 解决
-  JS 本身海量存量代码的 type-checking 问题, 我相信 row polymorphism 的表现能力会比较好些
+  JS 本身海量存量代码的 typechecking 问题, 我相信 row polymorphism 的表现能力会比较好些
 * **Algebraic effect**, 目前想的不是很明白 (algebraic effect 的类型系统貌似还是个 open
   problem), 目前想法是 type-directed CPS transformation 加上 [ECMTT], 这个解决 JS
   框架状态转移相关代码的表达能力的问题
@@ -89,6 +89,22 @@ F 变种, 这是考虑到用户的一些被 TS 搞得 **拧巴** 但是又 **顽
 * Unit 类型
   * Unit constructor, unit let-binding
 * 其他简单类型: boolean, JS 的基础类型 `number`, `string`, `BigInt` 等
+
+比如一个简单的 TypeScript 函数:
+
+```ts
+function foo(a: number, b: number): number { return a }
+```
+
+它会被 typecheck 成这个东西:
+
+```plaintext
+foo : (_tupled: (a: number) * (b: number) * unit) -> number
+foo = lambda a: a
+```
+
+也就是说这个函数只会接收 **1 个** 参数, 参数类型是一个 Sigma, 连接 `a` 和 `b` 后以 `unit`
+类型作为结尾. 我们用这种方式来 encode 一个基础的 JS 函数的声明和调用.
 
 暂时不考虑的东西:
 
