@@ -1,7 +1,7 @@
 # RowScript 现状和路线
 
-> * Anqur
-> * 2022-11-22
+* Anqur
+* 2022-11-22
 
 ## 啥事 RowScript?
 
