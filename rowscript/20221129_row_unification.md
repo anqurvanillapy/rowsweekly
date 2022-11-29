@@ -11,9 +11,10 @@
   define
 * 在 elaborate 表达式的过程中, elaborator 会生成 meta variables, [把 meta 塞到全局],
   其中 `Hole` 是一种 definition
+* 所有的 meta 塞到全局后, 实际上就成为了 constraints, TODO
 * TODO
 
-在 [前文] 中, 我们有个这样的例子 (删掉了一些比较奇怪的符号):
+在 [前文] 中, 我们有个这样的例子 (删掉了一些比较奇怪的符号), 用比较完整的 Agda 代码表示:
 
 ```agda
 data Row : Set where
@@ -38,7 +39,23 @@ getNum
 getNum = {??}
 ```
 
+我们需要检查的 definition:
+
+```agda
+lol : number
+lol = getNum {n: 42} {m: 69}
+--    ^--------------------^
+```
+
 TODO
+
+用 `<>` 符号表示 implicit arguments, 进行补全:
+
+```plaintext
+getNum<a = ?a, b = ?b, c = ?c, p = ?p, q = ?q>({n: 42}, {m: 69})
+```
+
+这个时候要把
 
 [TinyIdris]: https://www.youtube.com/watch?v=9SKN_vTQ1xM
 [`None`]: https://github.com/edwinb/SPLV20/blob/c6db8f38ee6e54fffd15cbca1ad3fe64060775b0/TinyIdris-v2/src/Core/Context.idr#L12
