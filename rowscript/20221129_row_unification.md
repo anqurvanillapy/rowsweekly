@@ -10,7 +10,7 @@
 * 一个 definition 可以是空的 [`None`], 表示它是一个 declaration (signature), 但是还没被
   define, 感觉可以用于 recursive definition
 * 在 elaborate definition 的过程中, 作为 [`Guess`] 插入到全局 definition 表中
-* 在 elaborate 具体的表达式时, 展开 implicates, [生成 meta variables 塞到全局], 其中
+* 在 elaborate 具体的表达式时, 展开 implicits, [生成 meta variables 塞到全局], 其中
   `Hole` 是一种 definition
 * 对每一个表达式针对性地 solve constraints
 
