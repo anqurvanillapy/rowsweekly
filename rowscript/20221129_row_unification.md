@@ -32,7 +32,7 @@ data Object (r : Row) : Set where
 getNum
     : {a : Row} → {b : Row} → {c : Row}
     → {auto p : c ≡ a ⨀ b}
-    → {auto q : (Field "n" number) ≤ $C}
+    → {auto q : (Field "n" number) ≤ c}
     → (x : Object a) → (y : Object b)
     → number
 getNum = {??}
