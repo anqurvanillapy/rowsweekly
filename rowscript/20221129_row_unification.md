@@ -11,6 +11,7 @@
   define
 * 在 elaborate 表达式的过程中, elaborator 会生成 meta variables, [把 meta 塞到全局],
   其中 `Hole` 是一种 definition
+* TODO
 
 在 [前文] 中, 我们有个这样的例子 (删掉了一些比较奇怪的符号):
 
@@ -32,7 +33,7 @@ data Object (r : Row) : Set where
 getNum
     : {a : Row} → {b : Row} → {c : Row}
     → {auto p : c ≡ a ⨀ b}
-    → {auto q : (n : number) ≤ $C}
+    → {auto q : (Field "n" number) ≤ $C}
     → (x : Object a) → (y : Object b)
     → number
 getNum = {??}
