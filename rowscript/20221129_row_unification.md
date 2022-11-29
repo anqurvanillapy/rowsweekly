@@ -44,21 +44,27 @@ getNum = {??}
 ```agda
 lol : number
 lol = getNum {n: 42} {m: 69}
---    ^--------------------^
 ```
 
-这个时候 `lol` 是一种叫做 [`Guess`] 的 definition, 它的 guess 就是下标注明的表达式, 即
-(换成 TypeScript 的形式):
+这个时候 `lol` 是一种叫做 [`Guess`] 的 definition, 它的 guess 就是下标注明的表达式, 即:
 
-```ts
-getNum({n: 42}, {m: 69})
+```plaintext
+        getNum {n: 42} {m: 69}
+--      ^--------------------^
 ```
 
-它的 constraints 就是 `number` 这个 *表达式*. 用 `<>` 符号表示 implicit arguments,
-我们对 guess 表达式进行补全:
+它的 constraints 就是 `number` 这个 *表达式*. 接下来深入到表达式内部第一个被检查的子表达式,
+是 `getNum` 这个 function reference.
 
-```ts
-getNum<a = ?a, b = ?b, c = ?c, p = ?p, q = ?q>({n: 42}, {m: 69})
+```agda
+        getNum {n: 42} {m: 69}
+--      ^----^
+```
+
+用 `<>` 符号表示 implicit arguments, 此时应该对表达式进行补全:
+
+```plaintext
+getNum <a = ?a, b = ?b, c = ?c, p = ?p, q = ?q> {n: 42} {m: 69}
 ```
 
 这时, elaborator 应该生成如下几个 hole 塞入到全局:
@@ -68,6 +74,14 @@ getNum<a = ?a, b = ?b, c = ?c, p = ?p, q = ?q>({n: 42}, {m: 69})
 * `?c : Row`
 * `?p : c ≡ a ⨀ b`
 * `?q : (Field "n" number) ≤ c`
+
+下一个要检查的表达式是 function application.
+
+```agda
+        getNum {n: 42} {m: 69}
+--      ^------------^
+
+```
 
 TODO
 
