@@ -48,7 +48,7 @@ lol = getNum {n: 42} {m: 69}
 
 这个时候 `lol` 是一种叫做 [`Guess`] 的 definition, 它的 guess 就是下标注明的表达式, 即:
 
-```plaintext
+```agda
         getNum {n: 42} {m: 69}
 --      ^--------------------^
 ```
