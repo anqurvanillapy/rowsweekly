@@ -19,7 +19,6 @@
 data Row : Set where
     Field : (n : Name) → (ty : Set) → Row
     More : (n : Name) → (ty : Set) → Row → Row
-    Ref : (r : Name) → Row
 
 data _≡_⨀_ (c a b : Row) : Set where
     RowRefl : c ≡ a ⨀ b
